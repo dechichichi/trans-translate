@@ -53,10 +53,10 @@ def create_data(source_sents, target_sents):
     X = np.zeros([len(x_list), hp.maxlen], np.int32)
     Y = np.zeros([len(y_list), hp.maxlen], np.int32)
     for i, (x, y) in enumerate(zip(x_list, y_list)):
-        X[i] = np.lib.pad(
+        X[i] = np.pad(
             x, [0, hp.maxlen - len(x)], "constant", constant_values=(0, 0)
         )
-        Y[i] = np.lib.pad(
+        Y[i] = np.pad(
             y, [0, hp.maxlen - len(y)], "constant", constant_values=(0, 0)
         )
 

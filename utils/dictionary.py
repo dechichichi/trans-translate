@@ -1,22 +1,15 @@
-from typing import Dict
+class Dictionary:
+    def __init__(self, word2idx, idx2word):
+        self.word2idx = word2idx
+        self.idx2word = idx2word
 
-
-class Dictionary(object):
-    def __init__(self, language_dict: Dict[str, int]):
-        self.word2ids = language_dict
-        self.ids2word = {v: k for k, v in self.word2ids.items()}
-
-    @property
-    def w2i(self):
-        return self.word2ids
-
-    @property
-    def i2w(self):
-        return self.ids2word
-
-    def __len__(self):
-        return len(self.word2ids)
-
-
-
-
+    @classmethod
+    def load(cls, vocab_file):
+        word2idx = {}
+        idx2word = {}
+        with open(vocab_file, 'r', encoding='utf-8') as f:
+            for idx, line in enumerate(f):
+                word = line.strip()
+                word2idx[word] = idx
+                idx2word[idx] = word
+        return cls(word2idx, idx2word)
