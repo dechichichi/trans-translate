@@ -34,3 +34,5 @@ class Dataset:
         tgt_out_batch = torch.roll(tgt_in_batch, shifts=-1, dims=1)
         
         return src_batch, tgt_in_batch, tgt_out_batch, None, None
+    def __len__(self):
+        return len(self.X)
